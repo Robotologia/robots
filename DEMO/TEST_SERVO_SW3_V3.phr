@@ -1,0 +1,110 @@
+#include <platform.h>
+//V7-8
+//////////////////////VAR/////////////////////////////////////////////////////////////////
+uint8_t BLACK_R=0, BLACK_L=0,BLACK_IN1=0,WITE_L=0,WITE_R=0,WITE_IN1=0;/// 0..255
+int8_t DELTA_L=0;// + - 127
+////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////SETUP//////////////////
+int main(void)
+{
+
+	
+s.avto_load(1);	
+s.fast_load(1);	
+	
+MOTOR1_FORCE=200;
+MOTOR2_FORCE=200;	
+MOTOR1_POSITION=2000; 	 
+MOTOR2_POSITION=2000; 
+
+	
+	
+//////***********//////WORK SIKL/////////////*****************//////////////////////////////////////////////////////////////////////////////////////////////	  
+while(true)
+  {
+
+	  
+if (INFO_SYSTEM == 0x03 ) //zapusk PROGRAM SW == 0x03	
+	{
+	MOTOR1_SPEED=50;
+	MOTOR2_SPEED=100;
+	SERVO1_POSITION = 700;
+	SERVO2_POSITION = 700;	
+	SERVO3_POSITION = 700;	
+	SERVO4_POSITION = 700;		
+	setPinHigh(LED1_PIN);//debug	
+	DELAY_ms(1000);	
+	MOTOR1_SPEED=0;
+	MOTOR2_SPEED=0;	
+	DELAY_ms(1000);
+	SERVO1_POSITION = 2200;
+	SERVO2_POSITION = 2200;
+	SERVO3_POSITION = 2200;	
+	SERVO4_POSITION = 2200;			
+	
+	DELAY_ms(1000);		
+	}	
+	else 
+	{
+	setPinLow(LED1_PIN);// 
+	SERVO1_POSITION = 1500;
+	SERVO2_POSITION = 1500;
+	SERVO3_POSITION = 1500;	
+	SERVO4_POSITION = 1500;	
+	MOTOR1_SPEED=-30;
+	MOTOR2_SPEED=-60;
+	DELAY_ms(800);			
+	}
+
+if (INFO_SW == 1 ) //zapusk PROGRAM SW == 0x03	
+	{
+	//SERVO1_POSITION = 1500;	
+	MOTOR1_SPEED=0;
+	MOTOR2_SPEED=0;	
+	setPinLow(LED2_PIN);// 
+	//setPinHigh(PB8);//debug	
+	DELAY_ms(500);		
+	}	
+	else 
+	{
+	setPinHigh(LED2_PIN);//debug	
+	//setPinLow(PB8);// 	
+	DELAY_ms(500);	
+	}	
+if (INFO_SW == 4 ) //zapusk PROGRAM SW == 0x03	
+	{
+	UPR_SOUND = 4;
+	
+	
+	DELAY_ms(500);		
+	}	
+	else 
+	{
+	UPR_SOUND = INFO_PLAY_SOUND;;	
+	DELAY_ms(500);	
+	}	
+		
+	
+//MOTOR2_SPEED=50;	
+//setPinHigh(LED1_PIN);//debug	
+//setPinHigh(PB8);//debug		
+//UPR_SYSTEM = 5; 	
+//DELAY_ms(500);	
+//MOTOR2_SPEED=0;	
+//UPR_SYSTEM = 1; 	
+//setPinLow(LED1_PIN);// 
+//setPinLow(PB8);// 	
+DELAY_ms(500);		
+///////////////////END MAIN WILE///////////////////&& (POWER_0N_TMP != 250 )////////////////////////////////////////	
+  }	
+///////////////////END MAIN ///////////////////////////////////////////////////////////		
+}
+
+
+
+
+
+
+
+
